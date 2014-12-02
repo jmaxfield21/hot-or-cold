@@ -63,7 +63,7 @@ function isValidGuess() {
 		clearGuessField();
 		return false;
 	}
-	if ( isNegative( guess ) || guess > 100 ) {
+	if ( isNumberOutOfRange( guess ) ) {
 		$('#feedback').text('Please guess a number between 1 and 100');
 		clearGuessField();
 		return false;
@@ -77,8 +77,8 @@ function isValidGuess() {
 	return true;
 }
 
-function isNegative( guess ) {
-	return guess <= 0;
+function isNumberOutOfRange( guess ) {
+	return guess <= 0 || guess > 100;
 }
 
 function isDecimal( guess ) {
@@ -94,7 +94,7 @@ function handleFeedback() {
 		clearGuessField();
 		var feedback;
 		if ( diff <= 5 ) feedback = 'Very Hot!';
-		else if ( diff <= 15 ) feedback = 'Hot!';
+		else if ( diff <= 10 ) feedback = 'Hot!';
 		else if ( diff < 20 ) feedback = 'Warm';
 		else if ( diff < 30 ) feedback = 'Cool';
 		else if ( diff < 50 ) feedback = 'Cold';
